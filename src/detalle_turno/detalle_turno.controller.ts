@@ -26,6 +26,7 @@ export class DetalleTurnoController {
     return this.detalleTurnoService.findAll();
   }
 
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.detalleTurnoService.findOne(+id);
