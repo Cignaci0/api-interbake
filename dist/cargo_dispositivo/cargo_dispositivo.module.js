@@ -12,12 +12,14 @@ const cargo_dispositivo_service_1 = require("./cargo_dispositivo.service");
 const cargo_dispositivo_controller_1 = require("./cargo_dispositivo.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const cargo_dispositivo_entity_1 = require("./entities/cargo_dispositivo.entity");
+const cargo_entity_1 = require("../cargo/entities/cargo.entity");
+const dispositivo_entity_1 = require("../dispositivo/entities/dispositivo.entity");
 let CargoDispositivoModule = class CargoDispositivoModule {
 };
 exports.CargoDispositivoModule = CargoDispositivoModule;
 exports.CargoDispositivoModule = CargoDispositivoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([cargo_dispositivo_entity_1.CargoDispositivo])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([cargo_dispositivo_entity_1.CargoDispositivo, cargo_entity_1.Cargo, dispositivo_entity_1.Dispositivo])],
         controllers: [cargo_dispositivo_controller_1.CargoDispositivoController],
         providers: [cargo_dispositivo_service_1.CargoDispositivoService],
     })

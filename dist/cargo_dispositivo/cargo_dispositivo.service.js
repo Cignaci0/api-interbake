@@ -5,10 +5,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CargoDispositivoService = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const cargo_dispositivo_entity_1 = require("./entities/cargo_dispositivo.entity");
+const cargo_entity_1 = require("../cargo/entities/cargo.entity");
+const dispositivo_entity_1 = require("../dispositivo/entities/dispositivo.entity");
+const typeorm_2 = require("typeorm");
 let CargoDispositivoService = class CargoDispositivoService {
+    cargoDispositivoRepository;
+    cargoRepository;
+    dispositivoRepository;
+    constructor(cargoDispositivoRepository, cargoRepository, dispositivoRepository) {
+        this.cargoDispositivoRepository = cargoDispositivoRepository;
+        this.cargoRepository = cargoRepository;
+        this.dispositivoRepository = dispositivoRepository;
+    }
     create(createCargoDispositivoDto) {
         return 'This action adds a new cargoDispositivo';
     }
@@ -24,9 +43,42 @@ let CargoDispositivoService = class CargoDispositivoService {
     remove(id) {
         return `This action removes a #${id} cargoDispositivo`;
     }
+    async asignacioCargoDispositivo(idCargo, idsDispositivos) {
+        const cargo = await this.cargoRepository.findOne({ where: { cargo_id: idCargo } });
+        if (!cargo) {
+            throw new common_1.NotFoundException(`El cargo con id ${idCargo} no fue encontrado.`);
+        }
+        if (idsDispositivos && idsDispositivos.length > 0) {
+            const dispositivos = await this.dispositivoRepository.find({
+                where: { dispositivo_id: (0, typeorm_2.In)(idsDispositivos) }
+            });
+            if (dispositivos.length !== idsDispositivos.length) {
+                const idsEncontrados = dispositivos.map(d => d.dispositivo_id);
+                const idsFaltantes = idsDispositivos.filter(id => !idsEncontrados.includes(id));
+                throw new common_1.NotFoundException(`Los siguientes ids de dispositivos no existen: ${idsFaltantes.join(', ')}.`);
+            }
+        }
+        await this.cargoDispositivoRepository.delete({ cargo_id: idCargo });
+        if (idsDispositivos && idsDispositivos.length > 0) {
+            const nuevosRegistros = idsDispositivos.map(id => {
+                return this.cargoDispositivoRepository.create({
+                    cargo_id: idCargo,
+                    dispositivo_id: id
+                });
+            });
+            return await this.cargoDispositivoRepository.save(nuevosRegistros);
+        }
+        return [];
+    }
 };
 exports.CargoDispositivoService = CargoDispositivoService;
 exports.CargoDispositivoService = CargoDispositivoService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(cargo_dispositivo_entity_1.CargoDispositivo)),
+    __param(1, (0, typeorm_1.InjectRepository)(cargo_entity_1.Cargo)),
+    __param(2, (0, typeorm_1.InjectRepository)(dispositivo_entity_1.Dispositivo)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository])
 ], CargoDispositivoService);
 //# sourceMappingURL=cargo_dispositivo.service.js.map

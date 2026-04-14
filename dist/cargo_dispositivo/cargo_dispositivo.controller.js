@@ -22,6 +22,9 @@ let CargoDispositivoController = class CargoDispositivoController {
     constructor(cargoDispositivoService) {
         this.cargoDispositivoService = cargoDispositivoService;
     }
+    asignacion(cargoId, dispositivosIds) {
+        return this.cargoDispositivoService.asignacioCargoDispositivo(cargoId, dispositivosIds);
+    }
     create(createCargoDispositivoDto) {
         return this.cargoDispositivoService.create(createCargoDispositivoDto);
     }
@@ -39,6 +42,14 @@ let CargoDispositivoController = class CargoDispositivoController {
     }
 };
 exports.CargoDispositivoController = CargoDispositivoController;
+__decorate([
+    (0, common_1.Post)('asignacion'),
+    __param(0, (0, common_1.Body)('cargo_id')),
+    __param(1, (0, common_1.Body)('dispositivos_ids')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Array]),
+    __metadata("design:returntype", void 0)
+], CargoDispositivoController.prototype, "asignacion", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

@@ -7,6 +7,14 @@ import { UpdateCargoDispositivoDto } from './dto/update-cargo_dispositivo.dto';
 export class CargoDispositivoController {
   constructor(private readonly cargoDispositivoService: CargoDispositivoService) {}
 
+  @Post('asignacion')
+  asignacion(
+    @Body('cargo_id') cargoId: number,
+    @Body('dispositivos_ids') dispositivosIds: number[],
+  ) {
+    return this.cargoDispositivoService.asignacioCargoDispositivo(cargoId, dispositivosIds);
+  }
+
   @Post()
   create(@Body() createCargoDispositivoDto: CreateCargoDispositivoDto) {
     return this.cargoDispositivoService.create(createCargoDispositivoDto);
@@ -32,3 +40,4 @@ export class CargoDispositivoController {
     return this.cargoDispositivoService.remove(+id);
   }
 }
+

@@ -21,11 +21,22 @@ let EmpleadoDispositivoController = class EmpleadoDispositivoController {
     constructor(empleadoDispositivoService) {
         this.empleadoDispositivoService = empleadoDispositivoService;
     }
+    asignacion(empleadoId, dispositivosIds) {
+        return this.empleadoDispositivoService.asignacionEmpleadoDispositivo(empleadoId, dispositivosIds);
+    }
     create(createEmpleadoDispositivoDto) {
         return this.empleadoDispositivoService.create(createEmpleadoDispositivoDto);
     }
 };
 exports.EmpleadoDispositivoController = EmpleadoDispositivoController;
+__decorate([
+    (0, common_1.Post)('asignacion'),
+    __param(0, (0, common_1.Body)('empleado_id')),
+    __param(1, (0, common_1.Body)('dispositivos_ids')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Array]),
+    __metadata("design:returntype", void 0)
+], EmpleadoDispositivoController.prototype, "asignacion", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

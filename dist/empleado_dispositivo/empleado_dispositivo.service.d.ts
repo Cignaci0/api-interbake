@@ -1,10 +1,13 @@
 import { CreateEmpleadoDispositivoDto } from './dto/create-empleado_dispositivo.dto';
 import { EmpleadoDispositivo } from './entities/empleado_dispositivo.entity';
 import { Repository } from 'typeorm';
-import { Usuario } from "../usuario/entities/usuario.entity";
+import { Empleado } from "../empleado/entities/empleado.entity";
+import { Dispositivo } from "../dispositivo/entities/dispositivo.entity";
 export declare class EmpleadoDispositivoService {
     private readonly empleadoDispositivoRepository;
-    private readonly usuarioRepository;
-    constructor(empleadoDispositivoRepository: Repository<EmpleadoDispositivo>, usuarioRepository: Repository<Usuario>);
+    private readonly empleadoRepository;
+    private readonly dispositivoRepository;
+    constructor(empleadoDispositivoRepository: Repository<EmpleadoDispositivo>, empleadoRepository: Repository<Empleado>, dispositivoRepository: Repository<Dispositivo>);
     create(createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto): string;
+    asignacionEmpleadoDispositivo(idEmpleado: number, idsDispositivos: number[]): Promise<EmpleadoDispositivo[]>;
 }

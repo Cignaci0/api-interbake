@@ -18,6 +18,12 @@ import { EmpleadoDispositivoModule } from './empleado_dispositivo/empleado_dispo
 import { CargoDispositivoModule } from './cargo_dispositivo/cargo_dispositivo.module';
 import { EmpleadoDispositivo } from './empleado_dispositivo/entities/empleado_dispositivo.entity';
 import { CargoDispositivo } from './cargo_dispositivo/entities/cargo_dispositivo.entity';
+import { DetalleTurnoModule } from './detalle_turno/detalle_turno.module';
+import { HorarioModule } from './horario/horario.module';
+import { TurnoModule } from './turno/turno.module';
+import { DetalleTurno } from './detalle_turno/entities/detalle_turno.entity';
+import { Horario } from './horario/entities/horario.entity';
+import { Turno } from './turno/entities/turno.entity';
 
 
 @Module({
@@ -31,7 +37,7 @@ import { CargoDispositivo } from './cargo_dispositivo/entities/cargo_dispositivo
       password: 'superadmin',
       database: 'interbake',
       synchronize: false,
-      entities: [Empleado, Cenco, Dispositivo, Cargo, Usuario, EmpleadoDispositivo, CargoDispositivo],
+      entities: [Empleado, Cenco, Dispositivo, Cargo, Usuario, EmpleadoDispositivo, CargoDispositivo, DetalleTurno, Horario, Turno],
     }),
     EmpleadoModule,
     CencoModule,
@@ -41,6 +47,9 @@ import { CargoDispositivo } from './cargo_dispositivo/entities/cargo_dispositivo
     AuthModule,
     EmpleadoDispositivoModule,
     CargoDispositivoModule,
+    DetalleTurnoModule,
+    HorarioModule,
+    TurnoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

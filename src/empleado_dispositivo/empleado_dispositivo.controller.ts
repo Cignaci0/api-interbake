@@ -7,6 +7,14 @@ import { UpdateEmpleadoDispositivoDto } from './dto/update-empleado_dispositivo.
 export class EmpleadoDispositivoController {
   constructor(private readonly empleadoDispositivoService: EmpleadoDispositivoService) {}
 
+  @Post('asignacion')
+  asignacion(
+    @Body('empleado_id') empleadoId: number,
+    @Body('dispositivos_ids') dispositivosIds: number[],
+  ) {
+    return this.empleadoDispositivoService.asignacionEmpleadoDispositivo(empleadoId, dispositivosIds);
+  }
+
   @Post()
   create(@Body() createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto) {
     return this.empleadoDispositivoService.create(createEmpleadoDispositivoDto);

@@ -27,6 +27,12 @@ const empleado_dispositivo_module_1 = require("./empleado_dispositivo/empleado_d
 const cargo_dispositivo_module_1 = require("./cargo_dispositivo/cargo_dispositivo.module");
 const empleado_dispositivo_entity_1 = require("./empleado_dispositivo/entities/empleado_dispositivo.entity");
 const cargo_dispositivo_entity_1 = require("./cargo_dispositivo/entities/cargo_dispositivo.entity");
+const detalle_turno_module_1 = require("./detalle_turno/detalle_turno.module");
+const horario_module_1 = require("./horario/horario.module");
+const turno_module_1 = require("./turno/turno.module");
+const detalle_turno_entity_1 = require("./detalle_turno/entities/detalle_turno.entity");
+const horario_entity_1 = require("./horario/entities/horario.entity");
+const turno_entity_1 = require("./turno/entities/turno.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -42,7 +48,7 @@ exports.AppModule = AppModule = __decorate([
                 password: 'superadmin',
                 database: 'interbake',
                 synchronize: false,
-                entities: [empleado_entity_1.Empleado, cenco_entity_1.Cenco, dispositivo_entity_1.Dispositivo, cargo_entity_1.Cargo, usuario_entity_1.Usuario, empleado_dispositivo_entity_1.EmpleadoDispositivo, cargo_dispositivo_entity_1.CargoDispositivo],
+                entities: [empleado_entity_1.Empleado, cenco_entity_1.Cenco, dispositivo_entity_1.Dispositivo, cargo_entity_1.Cargo, usuario_entity_1.Usuario, empleado_dispositivo_entity_1.EmpleadoDispositivo, cargo_dispositivo_entity_1.CargoDispositivo, detalle_turno_entity_1.DetalleTurno, horario_entity_1.Horario, turno_entity_1.Turno],
             }),
             empleado_module_1.EmpleadoModule,
             cenco_module_1.CencoModule,
@@ -52,6 +58,9 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             empleado_dispositivo_module_1.EmpleadoDispositivoModule,
             cargo_dispositivo_module_1.CargoDispositivoModule,
+            detalle_turno_module_1.DetalleTurnoModule,
+            horario_module_1.HorarioModule,
+            turno_module_1.TurnoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
