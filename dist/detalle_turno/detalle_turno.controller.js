@@ -40,6 +40,9 @@ let DetalleTurnoController = class DetalleTurnoController {
     remove(id) {
         return this.detalleTurnoService.remove(+id);
     }
+    buscarPorTurno(id) {
+        return this.detalleTurnoService.buscarPorTurno(+id);
+    }
 };
 exports.DetalleTurnoController = DetalleTurnoController;
 __decorate([
@@ -86,6 +89,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], DetalleTurnoController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('turno/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], DetalleTurnoController.prototype, "buscarPorTurno", null);
 exports.DetalleTurnoController = DetalleTurnoController = __decorate([
     (0, common_1.Controller)('detalle-turno'),
     __metadata("design:paramtypes", [detalle_turno_service_1.DetalleTurnoService])

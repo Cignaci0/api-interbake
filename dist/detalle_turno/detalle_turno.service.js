@@ -67,6 +67,17 @@ let DetalleTurnoService = class DetalleTurnoService {
         }));
         return await this.detalleTurnoRepository.save(nuevosRegistros);
     }
+    async buscarPorTurno(turnoId) {
+        const detalles = await this.detalleTurnoRepository
+            .createQueryBuilder('dt')
+            .leftJoinAndSelect('dt.horario_id', 'horario')
+            .where('dt.turno_id = :turnoId', { turnoId })
+            .getMany();
+        if (!detalles || detalles.length === 0) {
+            throw new common_1.NotFoundException(`El turno con id ${turnoId} no fue encontrado.`);
+        }
+        return detalles;
+    }
 };
 exports.DetalleTurnoService = DetalleTurnoService;
 exports.DetalleTurnoService = DetalleTurnoService = __decorate([

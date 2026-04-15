@@ -10,4 +10,5 @@ export declare class DetalleTurnoController {
     findOne(id: string): string;
     update(id: string, updateDetalleTurnoDto: UpdateDetalleTurnoDto): string;
     remove(id: string): string;
+    buscarPorTurno(id: string): Promise<import("./entities/detalle_turno.entity").DetalleTurno[]>;
 }

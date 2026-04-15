@@ -20,45 +20,8 @@ export class EmpleadoDispositivoService {
   ) { }
 
   create(createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto) {
-    return 'This action adds a new empleadoDispositivo';
+    const nuevoRegistro = this.empleadoDispositivoRepository.create(createEmpleadoDispositivoDto);
+    return this.empleadoDispositivoRepository.save(nuevoRegistro);
   }
-
-  async asignacionEmpleadoDispositivo(idEmpleado: number, idsDispositivos: number[]) {
-    // 1. Verificar si existe el empleado
-    const empleado = await this.empleadoRepository.findOne({ where: { empleado_id: idEmpleado } });
-    if (!empleado) {
-      throw new NotFoundException(`El empleado con id ${idEmpleado} no fue encontrado.`);
-    }
-
-    // 2. Verificar si existen todos los dispositivos enviados
-    if (idsDispositivos && idsDispositivos.length > 0) {
-      const dispositivos = await this.dispositivoRepository.find({
-        where: { dispositivo_id: In(idsDispositivos) }
-      });
-
-      if (dispositivos.length !== idsDispositivos.length) {
-        const idsEncontrados = dispositivos.map(d => d.dispositivo_id);
-        const idsFaltantes = idsDispositivos.filter(id => !idsEncontrados.includes(id));
-        throw new NotFoundException(`Los siguientes ids de dispositivos no existen: ${idsFaltantes.join(', ')}.`);
-      }
-    }
-
-    // 3. Eliminar todos los registros del empleado
-    await this.empleadoDispositivoRepository.delete({ empleado_id: idEmpleado });
-
-    // 4. Insertar los nuevos registros
-    if (idsDispositivos && idsDispositivos.length > 0) {
-      const nuevosRegistros = idsDispositivos.map(id =>
-        this.empleadoDispositivoRepository.create({
-          empleado_id: idEmpleado,
-          dispositivo_id: id,
-        })
-      );
-      return await this.empleadoDispositivoRepository.save(nuevosRegistros);
-    }
-
-    return [];
-  }
-
 }
 

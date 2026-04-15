@@ -41,5 +41,10 @@ export class DetalleTurnoController {
   remove(@Param('id') id: string) {
     return this.detalleTurnoService.remove(+id);
   }
+
+  @Get('turno/:id')
+  buscarPorTurno(@Param('id') id: string) {
+    return this.detalleTurnoService.buscarPorTurno(+id);
+  }
 }
 

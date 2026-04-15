@@ -8,6 +8,5 @@ export declare class EmpleadoDispositivoService {
     private readonly empleadoRepository;
     private readonly dispositivoRepository;
     constructor(empleadoDispositivoRepository: Repository<EmpleadoDispositivo>, empleadoRepository: Repository<Empleado>, dispositivoRepository: Repository<Dispositivo>);
-    create(createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto): string;
-    asignacionEmpleadoDispositivo(idEmpleado: number, idsDispositivos: number[]): Promise<EmpleadoDispositivo[]>;
+    create(createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto): Promise<EmpleadoDispositivo>;
 }

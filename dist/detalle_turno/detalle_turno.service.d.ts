@@ -15,4 +15,5 @@ export declare class DetalleTurnoService {
     update(id: number, updateDetalleTurnoDto: UpdateDetalleTurnoDto): string;
     remove(id: number): string;
     asignacionDetalleTurno(turnoId: number, codDias: number[], idsHorarios: number[]): Promise<DetalleTurno[]>;
+    buscarPorTurno(turnoId: number): Promise<DetalleTurno[]>;
 }

@@ -29,32 +29,8 @@ let EmpleadoDispositivoService = class EmpleadoDispositivoService {
         this.dispositivoRepository = dispositivoRepository;
     }
     create(createEmpleadoDispositivoDto) {
-        return 'This action adds a new empleadoDispositivo';
-    }
-    async asignacionEmpleadoDispositivo(idEmpleado, idsDispositivos) {
-        const empleado = await this.empleadoRepository.findOne({ where: { empleado_id: idEmpleado } });
-        if (!empleado) {
-            throw new common_1.NotFoundException(`El empleado con id ${idEmpleado} no fue encontrado.`);
-        }
-        if (idsDispositivos && idsDispositivos.length > 0) {
-            const dispositivos = await this.dispositivoRepository.find({
-                where: { dispositivo_id: (0, typeorm_2.In)(idsDispositivos) }
-            });
-            if (dispositivos.length !== idsDispositivos.length) {
-                const idsEncontrados = dispositivos.map(d => d.dispositivo_id);
-                const idsFaltantes = idsDispositivos.filter(id => !idsEncontrados.includes(id));
-                throw new common_1.NotFoundException(`Los siguientes ids de dispositivos no existen: ${idsFaltantes.join(', ')}.`);
-            }
-        }
-        await this.empleadoDispositivoRepository.delete({ empleado_id: idEmpleado });
-        if (idsDispositivos && idsDispositivos.length > 0) {
-            const nuevosRegistros = idsDispositivos.map(id => this.empleadoDispositivoRepository.create({
-                empleado_id: idEmpleado,
-                dispositivo_id: id,
-            }));
-            return await this.empleadoDispositivoRepository.save(nuevosRegistros);
-        }
-        return [];
+        const nuevoRegistro = this.empleadoDispositivoRepository.create(createEmpleadoDispositivoDto);
+        return this.empleadoDispositivoRepository.save(nuevoRegistro);
     }
 };
 exports.EmpleadoDispositivoService = EmpleadoDispositivoService;

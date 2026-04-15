@@ -15,6 +15,8 @@ let EmpleadoDispositivo = class EmpleadoDispositivo {
     id;
     empleado_id;
     dispositivo_id;
+    fecha_entrada;
+    fecha_salida;
 };
 exports.EmpleadoDispositivo = EmpleadoDispositivo;
 __decorate([
@@ -29,6 +31,14 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], EmpleadoDispositivo.prototype, "dispositivo_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Date)
+], EmpleadoDispositivo.prototype, "fecha_entrada", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Date)
+], EmpleadoDispositivo.prototype, "fecha_salida", void 0);
 exports.EmpleadoDispositivo = EmpleadoDispositivo = __decorate([
     (0, typeorm_1.Entity)({ name: 'empleado_dispositivo' })
 ], EmpleadoDispositivo);
