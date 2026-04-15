@@ -58,14 +58,18 @@ export class CargoDispositivoService {
     }
 
     // 3. Eliminar todos los registros de la bd que coincidan con ese id de cargo
-    await this.cargoDispositivoRepository.delete({ cargo_id: idCargo });
+    await this.cargoDispositivoRepository
+      .createQueryBuilder()
+      .delete()
+      .where('cargo_id = :idCargo', { idCargo })
+      .execute();
 
     // 4. Ingresar el cargo con los nuevos dispositivos
     if (idsDispositivos && idsDispositivos.length > 0) {
       const nuevosRegistros = idsDispositivos.map(id => {
         return this.cargoDispositivoRepository.create({
-          cargo_id: idCargo,
-          dispositivo_id: id
+          cargo_id: { cargo_id: idCargo } as any,
+          dispositivo_id: { dispositivo_id: id } as any,
         });
       });
 
@@ -73,5 +77,19 @@ export class CargoDispositivoService {
     }
 
     return [];
+  }
+
+  async buscarPorCargo(idCargo: number) {
+    const dispositivos = await this.cargoDispositivoRepository
+      .createQueryBuilder('cd')
+      .leftJoinAndSelect('cd.cargo_id', 'cargo')
+      .leftJoinAndSelect('cd.dispositivo_id', 'dispositivo')
+      .where('cd.cargo_id = :idCargo', { idCargo })
+      .getMany();
+
+    if (!dispositivos || dispositivos.length === 0) {
+      throw new NotFoundException(`El cargo con id ${idCargo} no tiene dispositivos asignados.`);
+    }
+    return dispositivos;
   }
 }

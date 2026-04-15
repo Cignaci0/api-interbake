@@ -58,17 +58,33 @@ let CargoDispositivoService = class CargoDispositivoService {
                 throw new common_1.NotFoundException(`Los siguientes ids de dispositivos no existen: ${idsFaltantes.join(', ')}.`);
             }
         }
-        await this.cargoDispositivoRepository.delete({ cargo_id: idCargo });
+        await this.cargoDispositivoRepository
+            .createQueryBuilder()
+            .delete()
+            .where('cargo_id = :idCargo', { idCargo })
+            .execute();
         if (idsDispositivos && idsDispositivos.length > 0) {
             const nuevosRegistros = idsDispositivos.map(id => {
                 return this.cargoDispositivoRepository.create({
-                    cargo_id: idCargo,
-                    dispositivo_id: id
+                    cargo_id: { cargo_id: idCargo },
+                    dispositivo_id: { dispositivo_id: id },
                 });
             });
             return await this.cargoDispositivoRepository.save(nuevosRegistros);
         }
         return [];
+    }
+    async buscarPorCargo(idCargo) {
+        const dispositivos = await this.cargoDispositivoRepository
+            .createQueryBuilder('cd')
+            .leftJoinAndSelect('cd.cargo_id', 'cargo')
+            .leftJoinAndSelect('cd.dispositivo_id', 'dispositivo')
+            .where('cd.cargo_id = :idCargo', { idCargo })
+            .getMany();
+        if (!dispositivos || dispositivos.length === 0) {
+            throw new common_1.NotFoundException(`El cargo con id ${idCargo} no tiene dispositivos asignados.`);
+        }
+        return dispositivos;
     }
 };
 exports.CargoDispositivoService = CargoDispositivoService;

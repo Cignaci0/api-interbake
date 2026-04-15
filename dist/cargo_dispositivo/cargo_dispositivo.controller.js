@@ -40,6 +40,9 @@ let CargoDispositivoController = class CargoDispositivoController {
     remove(id) {
         return this.cargoDispositivoService.remove(+id);
     }
+    buscarPorCargo(id) {
+        return this.cargoDispositivoService.buscarPorCargo(+id);
+    }
 };
 exports.CargoDispositivoController = CargoDispositivoController;
 __decorate([
@@ -85,6 +88,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CargoDispositivoController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('cargo/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], CargoDispositivoController.prototype, "buscarPorCargo", null);
 exports.CargoDispositivoController = CargoDispositivoController = __decorate([
     (0, common_1.Controller)('cargo-dispositivo'),
     __metadata("design:paramtypes", [cargo_dispositivo_service_1.CargoDispositivoService])

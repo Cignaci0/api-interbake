@@ -39,5 +39,10 @@ export class CargoDispositivoController {
   remove(@Param('id') id: string) {
     return this.cargoDispositivoService.remove(+id);
   }
+
+  @Get('cargo/:id')
+  buscarPorCargo(@Param('id') id: string) {
+    return this.cargoDispositivoService.buscarPorCargo(+id);
+  }
 }
 

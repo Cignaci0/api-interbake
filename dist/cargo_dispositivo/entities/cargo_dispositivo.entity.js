@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CargoDispositivo = void 0;
+const cargo_entity_1 = require("../../cargo/entities/cargo.entity");
+const dispositivo_entity_1 = require("../../dispositivo/entities/dispositivo.entity");
 const typeorm_1 = require("typeorm");
 let CargoDispositivo = class CargoDispositivo {
     id;
@@ -22,12 +24,14 @@ __decorate([
     __metadata("design:type", Number)
 ], CargoDispositivo.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.ManyToOne)(() => cargo_entity_1.Cargo),
+    (0, typeorm_1.JoinColumn)({ name: 'cargo_id' }),
+    __metadata("design:type", cargo_entity_1.Cargo)
 ], CargoDispositivo.prototype, "cargo_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.ManyToOne)(() => dispositivo_entity_1.Dispositivo),
+    (0, typeorm_1.JoinColumn)({ name: 'dispositivo_id' }),
+    __metadata("design:type", dispositivo_entity_1.Dispositivo)
 ], CargoDispositivo.prototype, "dispositivo_id", void 0);
 exports.CargoDispositivo = CargoDispositivo = __decorate([
     (0, typeorm_1.Entity)({ name: 'cargo_dispositivo' })

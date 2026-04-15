@@ -17,7 +17,7 @@ export class DetalleTurnoService {
     private readonly turnoRepository: Repository<Turno>,
     @InjectRepository(Horario)
     private readonly horarioRepository: Repository<Horario>,
-  ) {}
+  ) { }
 
   create(createDetalleTurnoDto: CreateDetalleTurnoDto) {
     return 'This action adds a new detalleTurno';
@@ -97,5 +97,6 @@ export class DetalleTurnoService {
     }
     return detalles;
   }
+  
 }
 

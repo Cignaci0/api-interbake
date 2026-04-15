@@ -15,4 +15,5 @@ export declare class CargoDispositivoService {
     update(id: number, updateCargoDispositivoDto: UpdateCargoDispositivoDto): string;
     remove(id: number): string;
     asignacioCargoDispositivo(idCargo: number, idsDispositivos: number[]): Promise<CargoDispositivo[]>;
+    buscarPorCargo(idCargo: number): Promise<CargoDispositivo[]>;
 }

@@ -1,13 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Cargo } from "src/cargo/entities/cargo.entity";
+import { Dispositivo } from "src/dispositivo/entities/dispositivo.entity";
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'cargo_dispositivo' })
 export class CargoDispositivo {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    cargo_id: number;
+    @ManyToOne(() => Cargo)
+    @JoinColumn({ name: 'cargo_id' })
+    cargo_id: Cargo;
 
-    @Column()
-    dispositivo_id: number;
+    @ManyToOne(() => Dispositivo)
+    @JoinColumn({ name: 'dispositivo_id' })
+    dispositivo_id: Dispositivo;
 }
