@@ -10,4 +10,10 @@ export class EmpleadoDispositivo {
 
     @Column()
     dispositivo_id: number;
+
+    @Column()
+    fecha_entrada: Date;
+
+    @Column()
+    fecha_salida: Date;
 }
