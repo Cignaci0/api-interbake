@@ -20,8 +20,20 @@ let TurnoService = class TurnoService {
         const turno = this.turnoRepository.create(createTurnoDto);
         return this.turnoRepository.save(turno);
     }
-    findAll() {
-        return this.turnoRepository.find();
+    async findAll(page = 1, limit = 10) {
+        const [data, total] = await this.turnoRepository.findAndCount({
+            order: {
+                turno_id: 'ASC'
+            },
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+        return {
+            data,
+            total,
+            totalPages: Math.ceil(total / limit),
+            page,
+        };
     }
     findOne(id) {
         const turno = this.turnoRepository.findOne({ where: { turno_id: id } });

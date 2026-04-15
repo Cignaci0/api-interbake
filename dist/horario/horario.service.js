@@ -20,8 +20,20 @@ let HorarioService = class HorarioService {
         const horario = this.horarioRepository.create(createHorarioDto);
         return this.horarioRepository.save(horario);
     }
-    findAll() {
-        return this.horarioRepository.find();
+    async findAll(page = 1, limit = 10) {
+        const [data, total] = await this.horarioRepository.findAndCount({
+            order: {
+                horario_id: 'ASC'
+            },
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+        return {
+            data,
+            total,
+            totalPages: Math.ceil(total / limit),
+            page,
+        };
     }
     findOne(id) {
         const horario = this.horarioRepository.findOne({ where: { horario_id: id } });

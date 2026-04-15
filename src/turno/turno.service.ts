@@ -16,8 +16,21 @@ export class TurnoService {
     return this.turnoRepository.save(turno);
   }
 
-  findAll() {
-    return this.turnoRepository.find();
+  async findAll(page: number = 1, limit: number = 10) {
+    const [data, total] = await this.turnoRepository.findAndCount({
+      order: {
+        turno_id: 'ASC'
+      },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    return {
+      data,
+      total,
+      totalPages: Math.ceil(total / limit),
+      page,
+    };
   }
 
   findOne(id: number) {
