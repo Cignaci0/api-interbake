@@ -28,6 +28,9 @@ let DispositivoService = class DispositivoService {
     }
     async findAll(page = 1, limit = 10) {
         const [data, total] = await this.dispositivoRepository.findAndCount({
+            order: {
+                dispositivo_id: 'ASC'
+            },
             skip: (page - 1) * limit,
             take: limit,
         });

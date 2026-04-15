@@ -19,6 +19,9 @@ export class DispositivoService {
 
   async findAll(page: number = 1, limit: number = 10) {
     const [data, total] = await this.dispositivoRepository.findAndCount({
+      order: {
+        dispositivo_id: 'ASC'
+      },
       skip: (page - 1) * limit,
       take: limit,
     });

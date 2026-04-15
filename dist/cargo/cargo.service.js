@@ -27,6 +27,9 @@ let CargoService = class CargoService {
     }
     async findAll(page = 1, limit = 10) {
         const [data, total] = await this.cargoRepository.findAndCount({
+            order: {
+                cargo_id: 'ASC'
+            },
             skip: (page - 1) * limit,
             take: limit,
         });

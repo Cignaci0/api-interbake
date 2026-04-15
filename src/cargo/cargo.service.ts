@@ -18,11 +18,15 @@ export class CargoService {
 
   async findAll(page: number = 1, limit: number = 10) {
     const [data, total] = await this.cargoRepository.findAndCount({
+      order: {
+        cargo_id: 'ASC'
+      },
       skip: (page - 1) * limit,
       take: limit,
     });
 
     return {
+      
       data,
       total,
       totalPages: Math.ceil(total / limit),
