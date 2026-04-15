@@ -25,8 +25,8 @@ let DispositivoController = class DispositivoController {
     create(createDispositivoDto) {
         return this.dispositivoService.create(createDispositivoDto);
     }
-    findAll() {
-        return this.dispositivoService.findAll();
+    findAll(page = '1', limit = '10') {
+        return this.dispositivoService.findAll(+page, +limit);
     }
     findOne(id) {
         return this.dispositivoService.findOne(+id);
@@ -48,8 +48,10 @@ __decorate([
 ], DispositivoController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
 ], DispositivoController.prototype, "findAll", null);
 __decorate([

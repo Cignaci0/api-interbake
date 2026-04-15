@@ -25,8 +25,8 @@ let CargoController = class CargoController {
     create(createCargoDto) {
         return this.cargoService.create(createCargoDto);
     }
-    findAll() {
-        return this.cargoService.findAll();
+    findAll(page = '1', limit = '10') {
+        return this.cargoService.findAll(+page, +limit);
     }
     findOne(id) {
         return this.cargoService.findOne(+id);
@@ -48,8 +48,10 @@ __decorate([
 ], CargoController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
 ], CargoController.prototype, "findAll", null);
 __decorate([

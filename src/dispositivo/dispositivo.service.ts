@@ -17,8 +17,18 @@ export class DispositivoService {
     return this.dispositivoRepository.save(dispositivo);
   }
 
-  findAll() {
-    return this.dispositivoRepository.find();
+  async findAll(page: number = 1, limit: number = 10) {
+    const [data, total] = await this.dispositivoRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    return {
+      data,
+      total,
+      totalPages: Math.ceil(total / limit),
+      page,
+    };
   }
 
   findOne(id: number) {

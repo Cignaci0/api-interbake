@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { DispositivoService } from './dispositivo.service';
 import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
 import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
@@ -13,8 +13,11 @@ export class DispositivoController {
   }
 
   @Get()
-  findAll() {
-    return this.dispositivoService.findAll();
+  findAll(
+    @Query('page') page: string = '1',
+    @Query('limit') limit: string = '10',
+  ) {
+    return this.dispositivoService.findAll(+page, +limit);
   }
 
   @Get(':id')

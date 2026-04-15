@@ -25,8 +25,17 @@ let CargoService = class CargoService {
     create(createCargoDto) {
         return this.cargoRepository.save(createCargoDto);
     }
-    findAll() {
-        return this.cargoRepository.find();
+    async findAll(page = 1, limit = 10) {
+        const [data, total] = await this.cargoRepository.findAndCount({
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+        return {
+            data,
+            total,
+            totalPages: Math.ceil(total / limit),
+            page,
+        };
     }
     findOne(id) {
         return this.cargoRepository.findOne({ where: { cargo_id: id } });

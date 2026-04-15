@@ -26,8 +26,17 @@ let DispositivoService = class DispositivoService {
         const dispositivo = this.dispositivoRepository.create(createDispositivoDto);
         return this.dispositivoRepository.save(dispositivo);
     }
-    findAll() {
-        return this.dispositivoRepository.find();
+    async findAll(page = 1, limit = 10) {
+        const [data, total] = await this.dispositivoRepository.findAndCount({
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+        return {
+            data,
+            total,
+            totalPages: Math.ceil(total / limit),
+            page,
+        };
     }
     findOne(id) {
         return this.dispositivoRepository.findOne({ where: { dispositivo_id: id } });

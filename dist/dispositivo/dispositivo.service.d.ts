@@ -6,7 +6,12 @@ export declare class DispositivoService {
     private readonly dispositivoRepository;
     constructor(dispositivoRepository: Repository<Dispositivo>);
     create(createDispositivoDto: CreateDispositivoDto): Promise<Dispositivo>;
-    findAll(): Promise<Dispositivo[]>;
+    findAll(page?: number, limit?: number): Promise<{
+        data: Dispositivo[];
+        total: number;
+        totalPages: number;
+        page: number;
+    }>;
     findOne(id: number): Promise<Dispositivo | null>;
     update(id: number, updateDispositivoDto: UpdateDispositivoDto): Promise<import("typeorm").UpdateResult>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
