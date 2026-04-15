@@ -10,5 +10,8 @@ export declare class CargoDispositivoController {
     findOne(id: string): string;
     update(id: string, updateCargoDispositivoDto: UpdateCargoDispositivoDto): string;
     remove(id: string): string;
-    buscarPorCargo(id: string): Promise<import("./entities/cargo_dispositivo.entity").CargoDispositivo[]>;
+    buscarPorCargo(id: string): Promise<{
+        cargo_id: any;
+        dispositivos: any[];
+    }>;
 }

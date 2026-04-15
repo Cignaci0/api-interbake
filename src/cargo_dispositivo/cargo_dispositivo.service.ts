@@ -80,16 +80,27 @@ export class CargoDispositivoService {
   }
 
   async buscarPorCargo(idCargo: number) {
-    const dispositivos = await this.cargoDispositivoRepository
+    const registros = await this.cargoDispositivoRepository
       .createQueryBuilder('cd')
       .leftJoinAndSelect('cd.cargo_id', 'cargo')
       .leftJoinAndSelect('cd.dispositivo_id', 'dispositivo')
       .where('cd.cargo_id = :idCargo', { idCargo })
       .getMany();
 
-    if (!dispositivos || dispositivos.length === 0) {
+    if (!registros || registros.length === 0) {
       throw new NotFoundException(`El cargo con id ${idCargo} no tiene dispositivos asignados.`);
     }
-    return dispositivos;
+
+    // Agrupar dispositivos bajo un único objeto cargo
+    const result = registros.reduce((acc, registro) => {
+      if (!acc.cargo_id) {
+        acc.cargo_id = registro.cargo_id;
+        acc.dispositivos = [];
+      }
+      acc.dispositivos.push(registro.dispositivo_id);
+      return acc;
+    }, {} as { cargo_id: any; dispositivos: any[] });
+
+    return result;
   }
 }

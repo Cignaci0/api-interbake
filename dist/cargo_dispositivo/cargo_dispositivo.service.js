@@ -75,16 +75,24 @@ let CargoDispositivoService = class CargoDispositivoService {
         return [];
     }
     async buscarPorCargo(idCargo) {
-        const dispositivos = await this.cargoDispositivoRepository
+        const registros = await this.cargoDispositivoRepository
             .createQueryBuilder('cd')
             .leftJoinAndSelect('cd.cargo_id', 'cargo')
             .leftJoinAndSelect('cd.dispositivo_id', 'dispositivo')
             .where('cd.cargo_id = :idCargo', { idCargo })
             .getMany();
-        if (!dispositivos || dispositivos.length === 0) {
+        if (!registros || registros.length === 0) {
             throw new common_1.NotFoundException(`El cargo con id ${idCargo} no tiene dispositivos asignados.`);
         }
-        return dispositivos;
+        const result = registros.reduce((acc, registro) => {
+            if (!acc.cargo_id) {
+                acc.cargo_id = registro.cargo_id;
+                acc.dispositivos = [];
+            }
+            acc.dispositivos.push(registro.dispositivo_id);
+            return acc;
+        }, {});
+        return result;
     }
 };
 exports.CargoDispositivoService = CargoDispositivoService;
