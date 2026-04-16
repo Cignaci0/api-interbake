@@ -20,4 +20,9 @@ export class EmpleadoDispositivoController {
     return this.empleadoDispositivoService.findAll(+page, +limit);
   }
 
+  @Get(':id')
+  buscarPorEmpleado(@Param('id') id: string) {
+    return this.empleadoDispositivoService.buscarPorEmpleado(+id);
+  }
+
 }
