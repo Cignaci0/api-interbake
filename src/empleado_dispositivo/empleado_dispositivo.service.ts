@@ -40,5 +40,17 @@ export class EmpleadoDispositivoService {
       page,
     };
   }
+
+  async buscarPorEmpleado(idEmpleado:number){
+    const empleado = await this.empleadoDispositivoRepository.find({
+      where:{
+        empleado_id:idEmpleado
+      }
+    })
+    if(!empleado){
+      throw new NotFoundException(`No se encontro ningun registro con el id ${idEmpleado}`);
+    }
+    return empleado;
+  }
 }
 
