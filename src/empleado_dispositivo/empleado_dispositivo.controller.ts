@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { EmpleadoDispositivoService } from './empleado_dispositivo.service';
 import { CreateEmpleadoDispositivoDto } from './dto/create-empleado_dispositivo.dto';
 import { UpdateEmpleadoDispositivoDto } from './dto/update-empleado_dispositivo.dto';
@@ -10,6 +10,14 @@ export class EmpleadoDispositivoController {
   @Post()
   create(@Body() createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto) {
     return this.empleadoDispositivoService.create(createEmpleadoDispositivoDto);
+  }
+
+  @Get()
+  findAll(
+    @Query('page') page: string = '1',
+    @Query('limit') limit: string = '10',
+  ) {
+    return this.empleadoDispositivoService.findAll(+page, +limit);
   }
 
 }
