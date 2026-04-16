@@ -10,11 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmpleadoDispositivo = void 0;
+const dispositivo_entity_1 = require("../../dispositivo/entities/dispositivo.entity");
 const typeorm_1 = require("typeorm");
 let EmpleadoDispositivo = class EmpleadoDispositivo {
     id;
     empleado_id;
-    dispositivo_id;
+    dispositivo;
     fecha_entrada;
     fecha_salida;
     hora_entrada;
@@ -30,9 +31,10 @@ __decorate([
     __metadata("design:type", Number)
 ], EmpleadoDispositivo.prototype, "empleado_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], EmpleadoDispositivo.prototype, "dispositivo_id", void 0);
+    (0, typeorm_1.ManyToOne)(() => dispositivo_entity_1.Dispositivo, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'dispositivo_id' }),
+    __metadata("design:type", dispositivo_entity_1.Dispositivo)
+], EmpleadoDispositivo.prototype, "dispositivo", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)

@@ -19,8 +19,13 @@ export class EmpleadoDispositivoService {
     private readonly dispositivoRepository: Repository<Dispositivo>,
   ) { }
 
-  create(createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto) {
-    const nuevoRegistro = this.empleadoDispositivoRepository.create(createEmpleadoDispositivoDto);
+  async create(createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto) {
+    const { empleado_id, dispositivo_id, ...rest } = createEmpleadoDispositivoDto;
+    const nuevoRegistro = this.empleadoDispositivoRepository.create({
+      ...rest,
+      empleado_id,
+      dispositivo: { dispositivo_id },
+    });
     return this.empleadoDispositivoRepository.save(nuevoRegistro);
   }
 
@@ -45,6 +50,9 @@ export class EmpleadoDispositivoService {
     const empleado = await this.empleadoDispositivoRepository.find({
       where:{
         empleado_id:idEmpleado
+      },
+      relations:{
+        dispositivo:true
       }
     })
     if(empleado.length === 0){

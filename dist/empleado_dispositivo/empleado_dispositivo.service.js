@@ -28,8 +28,13 @@ let EmpleadoDispositivoService = class EmpleadoDispositivoService {
         this.empleadoRepository = empleadoRepository;
         this.dispositivoRepository = dispositivoRepository;
     }
-    create(createEmpleadoDispositivoDto) {
-        const nuevoRegistro = this.empleadoDispositivoRepository.create(createEmpleadoDispositivoDto);
+    async create(createEmpleadoDispositivoDto) {
+        const { empleado_id, dispositivo_id, ...rest } = createEmpleadoDispositivoDto;
+        const nuevoRegistro = this.empleadoDispositivoRepository.create({
+            ...rest,
+            empleado_id,
+            dispositivo: { dispositivo_id },
+        });
         return this.empleadoDispositivoRepository.save(nuevoRegistro);
     }
     async findAll(page = 1, limit = 10) {
@@ -51,6 +56,9 @@ let EmpleadoDispositivoService = class EmpleadoDispositivoService {
         const empleado = await this.empleadoDispositivoRepository.find({
             where: {
                 empleado_id: idEmpleado
+            },
+            relations: {
+                dispositivo: true
             }
         });
         if (empleado.length === 0) {
