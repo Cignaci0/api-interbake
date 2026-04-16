@@ -1,5 +1,6 @@
 import { EmpleadoDispositivoService } from './empleado_dispositivo.service';
 import { CreateEmpleadoDispositivoDto } from './dto/create-empleado_dispositivo.dto';
+import { UpdateEmpleadoDispositivoDto } from './dto/update-empleado_dispositivo.dto';
 export declare class EmpleadoDispositivoController {
     private readonly empleadoDispositivoService;
     constructor(empleadoDispositivoService: EmpleadoDispositivoService);
@@ -10,5 +11,7 @@ export declare class EmpleadoDispositivoController {
         totalPages: number;
         page: number;
     }>;
+    update(id: string, updateEmpleadoDispositivoDto: UpdateEmpleadoDispositivoDto): Promise<import("typeorm").UpdateResult>;
     buscarPorEmpleado(id: string): Promise<import("./entities/empleado_dispositivo.entity").EmpleadoDispositivo[]>;
+    delete(id: string): Promise<import("typeorm").DeleteResult>;
 }

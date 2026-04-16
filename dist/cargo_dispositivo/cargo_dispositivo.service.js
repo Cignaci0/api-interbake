@@ -31,17 +31,35 @@ let CargoDispositivoService = class CargoDispositivoService {
     create(createCargoDispositivoDto) {
         return 'This action adds a new cargoDispositivo';
     }
-    findAll() {
-        return `This action returns all cargoDispositivo`;
+    async findAll(page = 1, limit = 10) {
+        const [data, total] = await this.cargoDispositivoRepository.findAndCount({
+            order: {
+                id: 'ASC'
+            },
+            relations: ['cargo_id', 'dispositivo_id'],
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+        return {
+            data,
+            total,
+            totalPages: Math.ceil(total / limit),
+            page,
+        };
     }
-    findOne(id) {
-        return `This action returns a #${id} cargoDispositivo`;
+    async update(id, updateCargoDispositivoDto) {
+        const registro = await this.cargoDispositivoRepository.findOne({ where: { id: id } });
+        if (!registro) {
+            throw new common_1.NotFoundException(`No se encontro ningun registro con el id ${id}`);
+        }
+        return this.cargoDispositivoRepository.update(id, updateCargoDispositivoDto);
     }
-    update(id, updateCargoDispositivoDto) {
-        return `This action updates a #${id} cargoDispositivo`;
-    }
-    remove(id) {
-        return `This action removes a #${id} cargoDispositivo`;
+    async remove(id) {
+        const registro = await this.cargoDispositivoRepository.findOne({ where: { id: id } });
+        if (!registro) {
+            throw new common_1.NotFoundException(`No se encontro ningun registro con el id ${id}`);
+        }
+        return this.cargoDispositivoRepository.delete(id);
     }
     async asignacioCargoDispositivo(idCargo, idsDispositivos) {
         const cargo = await this.cargoRepository.findOne({ where: { cargo_id: idCargo } });

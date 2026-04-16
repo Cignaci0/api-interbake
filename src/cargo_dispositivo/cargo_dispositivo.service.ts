@@ -21,20 +21,38 @@ export class CargoDispositivoService {
     return 'This action adds a new cargoDispositivo';
   }
 
-  findAll() {
-    return `This action returns all cargoDispositivo`;
+  async findAll(page: number = 1, limit: number = 10) {
+    const [data, total] = await this.cargoDispositivoRepository.findAndCount({
+      order: {
+        id: 'ASC'
+      },
+      relations:['cargo_id','dispositivo_id'],
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    return {
+      data,
+      total,
+      totalPages: Math.ceil(total / limit),
+      page,
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cargoDispositivo`;
+ async update(id: number, updateCargoDispositivoDto: UpdateCargoDispositivoDto) {
+    const registro = await this.cargoDispositivoRepository.findOne({where:{id:id}})
+    if(!registro){
+      throw new NotFoundException(`No se encontro ningun registro con el id ${id}`);
+    }
+    return this.cargoDispositivoRepository.update(id, updateCargoDispositivoDto);
   }
 
-  update(id: number, updateCargoDispositivoDto: UpdateCargoDispositivoDto) {
-    return `This action updates a #${id} cargoDispositivo`;
+ async remove(id: number) {
+  const registro = await this.cargoDispositivoRepository.findOne({where:{id:id}})
+  if(!registro){
+    throw new NotFoundException(`No se encontro ningun registro con el id ${id}`);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} cargoDispositivo`;
+  return this.cargoDispositivoRepository.delete(id);
   }
 
   async asignacioCargoDispositivo(idCargo:number, idsDispositivos:number[]){

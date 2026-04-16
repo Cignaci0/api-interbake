@@ -7,7 +7,7 @@ export class DetalleTurno {
     @PrimaryGeneratedColumn()
     id:number
 
-    @ManyToOne(() => Turno, (turno) => turno.detalle_turno)
+    @ManyToOne(() => Turno, (turno) => turno.detalle_turno, {onDelete:'CASCADE'})
     @JoinColumn({ name: 'turno_id' })
     turno_id:Turno
 

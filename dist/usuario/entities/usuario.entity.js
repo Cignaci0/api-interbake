@@ -87,7 +87,7 @@ __decorate([
     __metadata("design:type", Object)
 ], Usuario.prototype, "reset_token_expires", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => empleado_entity_1.Empleado),
+    (0, typeorm_1.OneToOne)(() => empleado_entity_1.Empleado, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinColumn)({ name: 'empleado_id' }),
     __metadata("design:type", empleado_entity_1.Empleado)
 ], Usuario.prototype, "empleado", void 0);

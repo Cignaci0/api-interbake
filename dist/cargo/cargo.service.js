@@ -40,13 +40,25 @@ let CargoService = class CargoService {
             page,
         };
     }
-    findOne(id) {
-        return this.cargoRepository.findOne({ where: { cargo_id: id } });
+    async findOne(id) {
+        const registro = await this.cargoRepository.findOne({ where: { cargo_id: id } });
+        if (!registro) {
+            throw new common_1.NotFoundException(`No se encontro ningun registro con el id ${id}`);
+        }
+        return registro;
     }
-    update(id, updateCargoDto) {
+    async update(id, updateCargoDto) {
+        const registro = await this.cargoRepository.findOne({ where: { cargo_id: id } });
+        if (!registro) {
+            throw new common_1.NotFoundException(`No se encontro ningun registro con el id ${id}`);
+        }
         return this.cargoRepository.update(id, updateCargoDto);
     }
-    remove(id) {
+    async remove(id) {
+        const registro = await this.cargoRepository.findOne({ where: { cargo_id: id } });
+        if (!registro) {
+            throw new common_1.NotFoundException(`No se encontro ningun registro con el id ${id}`);
+        }
         return this.cargoRepository.delete(id);
     }
 };

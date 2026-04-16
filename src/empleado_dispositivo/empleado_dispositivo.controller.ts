@@ -20,9 +20,18 @@ export class EmpleadoDispositivoController {
     return this.empleadoDispositivoService.findAll(+page, +limit);
   }
 
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateEmpleadoDispositivoDto: UpdateEmpleadoDispositivoDto) {
+    return this.empleadoDispositivoService.update(+id, updateEmpleadoDispositivoDto);
+  }
+
   @Get(':id')
   buscarPorEmpleado(@Param('id') id: string) {
     return this.empleadoDispositivoService.buscarPorEmpleado(+id);
   }
 
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.empleadoDispositivoService.delete(+id);
+  }
 }

@@ -32,7 +32,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Turno.prototype, "estado_id", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => detalle_turno_entity_1.DetalleTurno, (detalle_turno) => detalle_turno.turno_id),
+    (0, typeorm_1.OneToMany)(() => detalle_turno_entity_1.DetalleTurno, (detalle_turno) => detalle_turno.turno_id, { cascade: true }),
     __metadata("design:type", Array)
 ], Turno.prototype, "detalle_turno", void 0);
 exports.Turno = Turno = __decorate([

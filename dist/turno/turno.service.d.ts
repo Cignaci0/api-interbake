@@ -10,7 +10,7 @@ export declare class TurnoService {
         totalPages: number;
         page: number;
     }>;
-    findOne(id: number): Promise<Turno | null>;
+    findOne(id: number): Promise<Turno>;
     update(id: number, updateTurnoDto: UpdateTurnoDto): Promise<import("typeorm").UpdateResult>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

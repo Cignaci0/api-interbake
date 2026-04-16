@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
 import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
 import { Dispositivo } from './entities/dispositivo.entity';
@@ -42,7 +42,11 @@ export class DispositivoService {
     return this.dispositivoRepository.update(id, updateDispositivoDto);
   }
 
-  remove(id: number) {
+  async remove(id: number) {
+    const dispositivo = await this.dispositivoRepository.findOne({ where: { dispositivo_id: id } });
+    if (!dispositivo) {
+      throw new NotFoundException('Dispositivo no encontrado');
+    }
     return this.dispositivoRepository.delete(id);
   }
 }

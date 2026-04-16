@@ -35,24 +35,24 @@ let TurnoService = class TurnoService {
             page,
         };
     }
-    findOne(id) {
-        const turno = this.turnoRepository.findOne({ where: { turno_id: id } });
+    async findOne(id) {
+        const turno = await this.turnoRepository.findOne({ where: { turno_id: id } });
         if (!turno) {
-            throw new Error('Turno no encontrado');
+            throw new common_1.NotFoundException('Turno no encontrado');
         }
         return turno;
     }
-    update(id, updateTurnoDto) {
-        const turno = this.turnoRepository.findOne({ where: { turno_id: id } });
+    async update(id, updateTurnoDto) {
+        const turno = await this.turnoRepository.findOne({ where: { turno_id: id } });
         if (!turno) {
-            throw new Error('Turno no encontrado');
+            throw new common_1.NotFoundException('Turno no encontrado');
         }
         return this.turnoRepository.update(id, updateTurnoDto);
     }
-    remove(id) {
-        const turno = this.turnoRepository.findOne({ where: { turno_id: id } });
+    async remove(id) {
+        const turno = await this.turnoRepository.findOne({ where: { turno_id: id } });
         if (!turno) {
-            throw new Error('Turno no encontrado');
+            throw new common_1.NotFoundException('Turno no encontrado');
         }
         return this.turnoRepository.delete(id);
     }

@@ -11,7 +11,7 @@ export declare class TurnoController {
         totalPages: number;
         page: number;
     }>;
-    findOne(id: string): Promise<import("./entities/turno.entity").Turno | null>;
+    findOne(id: string): Promise<import("./entities/turno.entity").Turno>;
     update(id: string, updateTurnoDto: UpdateTurnoDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

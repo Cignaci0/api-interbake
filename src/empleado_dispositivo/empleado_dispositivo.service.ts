@@ -52,5 +52,21 @@ export class EmpleadoDispositivoService {
     }
     return empleado;
   }
+
+  async delete(id:number){
+    const empleado = await this.empleadoDispositivoRepository.findOne({where:{id:id}})
+    if(!empleado){
+      throw new NotFoundException(`No se encontro ningun registro con el id ${id}`);
+    }
+    return this.empleadoDispositivoRepository.delete(id);
+  }
+
+  async update(id:number, updateEmpleadoDispositivoDto:UpdateEmpleadoDispositivoDto){
+    const empleado = await this.empleadoDispositivoRepository.findOne({where:{id:id}})
+    if(!empleado){
+      throw new NotFoundException(`No se encontro ningun registro con el id ${id}`);
+    }
+    return this.empleadoDispositivoRepository.update(id, updateEmpleadoDispositivoDto);
+  }
 }
 

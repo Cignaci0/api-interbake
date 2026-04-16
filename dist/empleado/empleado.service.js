@@ -137,10 +137,10 @@ let EmpleadoService = class EmpleadoService {
             },
         };
     }
-    remove(id) {
-        const empleado = this.empleadoRepository.findOne({ where: { empleado_id: id } });
+    async remove(id) {
+        const empleado = await this.empleadoRepository.findOne({ where: { empleado_id: id } });
         if (!empleado) {
-            throw new Error('Empleado no encontrado');
+            throw new common_1.NotFoundException('Empleado no encontrado');
         }
         return this.empleadoRepository.delete(id);
     }

@@ -12,7 +12,7 @@ export declare class CargoService {
         totalPages: number;
         page: number;
     }>;
-    findOne(id: number): Promise<Cargo | null>;
+    findOne(id: number): Promise<Cargo>;
     update(id: number, updateCargoDto: UpdateCargoDto): Promise<import("typeorm").UpdateResult>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

@@ -15,19 +15,9 @@ export class CargoDispositivoController {
     return this.cargoDispositivoService.asignacioCargoDispositivo(cargoId, dispositivosIds);
   }
 
-  @Post()
-  create(@Body() createCargoDispositivoDto: CreateCargoDispositivoDto) {
-    return this.cargoDispositivoService.create(createCargoDispositivoDto);
-  }
-
   @Get()
   findAll() {
     return this.cargoDispositivoService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cargoDispositivoService.findOne(+id);
   }
 
   @Patch(':id')

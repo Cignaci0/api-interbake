@@ -1,4 +1,5 @@
 import { CreateEmpleadoDispositivoDto } from './dto/create-empleado_dispositivo.dto';
+import { UpdateEmpleadoDispositivoDto } from './dto/update-empleado_dispositivo.dto';
 import { EmpleadoDispositivo } from './entities/empleado_dispositivo.entity';
 import { Repository } from 'typeorm';
 import { Empleado } from "../empleado/entities/empleado.entity";
@@ -16,4 +17,6 @@ export declare class EmpleadoDispositivoService {
         page: number;
     }>;
     buscarPorEmpleado(idEmpleado: number): Promise<EmpleadoDispositivo[]>;
+    delete(id: number): Promise<import("typeorm").DeleteResult>;
+    update(id: number, updateEmpleadoDispositivoDto: UpdateEmpleadoDispositivoDto): Promise<import("typeorm").UpdateResult>;
 }

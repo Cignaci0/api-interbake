@@ -35,24 +35,24 @@ let HorarioService = class HorarioService {
             page,
         };
     }
-    findOne(id) {
-        const horario = this.horarioRepository.findOne({ where: { horario_id: id } });
+    async findOne(id) {
+        const horario = await this.horarioRepository.findOne({ where: { horario_id: id } });
         if (!horario) {
-            throw new Error('Horario no encontrado');
+            throw new common_1.NotFoundException('Horario no encontrado');
         }
         return horario;
     }
-    update(id, updateHorarioDto) {
-        const horario = this.horarioRepository.findOne({ where: { horario_id: id } });
+    async update(id, updateHorarioDto) {
+        const horario = await this.horarioRepository.findOne({ where: { horario_id: id } });
         if (!horario) {
-            throw new Error('Horario no encontrado');
+            throw new common_1.NotFoundException('Horario no encontrado');
         }
         return this.horarioRepository.update(id, updateHorarioDto);
     }
-    remove(id) {
-        const horario = this.horarioRepository.findOne({ where: { horario_id: id } });
+    async remove(id) {
+        const horario = await this.horarioRepository.findOne({ where: { horario_id: id } });
         if (!horario) {
-            throw new Error('Horario no encontrado');
+            throw new common_1.NotFoundException('Horario no encontrado');
         }
         return this.horarioRepository.delete(id);
     }

@@ -10,7 +10,7 @@ export declare class HorarioService {
         totalPages: number;
         page: number;
     }>;
-    findOne(id: number): Promise<Horario | null>;
+    findOne(id: number): Promise<Horario>;
     update(id: number, updateHorarioDto: UpdateHorarioDto): Promise<import("typeorm").UpdateResult>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

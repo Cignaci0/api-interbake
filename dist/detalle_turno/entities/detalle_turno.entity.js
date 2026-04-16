@@ -25,7 +25,7 @@ __decorate([
     __metadata("design:type", Number)
 ], DetalleTurno.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => turno_entity_1.Turno, (turno) => turno.detalle_turno),
+    (0, typeorm_1.ManyToOne)(() => turno_entity_1.Turno, (turno) => turno.detalle_turno, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinColumn)({ name: 'turno_id' }),
     __metadata("design:type", turno_entity_1.Turno)
 ], DetalleTurno.prototype, "turno_id", void 0);

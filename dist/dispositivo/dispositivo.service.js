@@ -47,7 +47,11 @@ let DispositivoService = class DispositivoService {
     update(id, updateDispositivoDto) {
         return this.dispositivoRepository.update(id, updateDispositivoDto);
     }
-    remove(id) {
+    async remove(id) {
+        const dispositivo = await this.dispositivoRepository.findOne({ where: { dispositivo_id: id } });
+        if (!dispositivo) {
+            throw new common_1.NotFoundException('Dispositivo no encontrado');
+        }
         return this.dispositivoRepository.delete(id);
     }
 };

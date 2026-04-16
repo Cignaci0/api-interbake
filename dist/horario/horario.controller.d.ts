@@ -11,7 +11,7 @@ export declare class HorarioController {
         totalPages: number;
         page: number;
     }>;
-    findOne(id: string): Promise<import("./entities/horario.entity").Horario | null>;
+    findOne(id: string): Promise<import("./entities/horario.entity").Horario>;
     update(id: string, updateHorarioDto: UpdateHorarioDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

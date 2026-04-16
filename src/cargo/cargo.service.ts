@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCargoDto } from './dto/create-cargo.dto';
 import { UpdateCargoDto } from './dto/update-cargo.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -34,15 +34,27 @@ export class CargoService {
     };
   }
 
-  findOne(id: number) {
-    return this.cargoRepository.findOne({ where: { cargo_id: id } });
+  async findOne(id: number) {
+    const registro = await this.cargoRepository.findOne({where:{cargo_id:id}})
+    if(!registro){
+      throw new NotFoundException(`No se encontro ningun registro con el id ${id}`);
+    }
+    return registro;
   }
 
-  update(id: number, updateCargoDto: UpdateCargoDto) {
+  async update(id: number, updateCargoDto: UpdateCargoDto) {
+    const registro = await this.cargoRepository.findOne({where:{cargo_id:id}})
+    if(!registro){
+      throw new NotFoundException(`No se encontro ningun registro con el id ${id}`);
+    }
     return this.cargoRepository.update(id, updateCargoDto);
   }
 
-  remove(id: number) {
+  async remove(id: number) {
+    const registro = await this.cargoRepository.findOne({where:{cargo_id:id}})
+    if(!registro){
+      throw new NotFoundException(`No se encontro ningun registro con el id ${id}`);
+    }
     return this.cargoRepository.delete(id);
   }
 }

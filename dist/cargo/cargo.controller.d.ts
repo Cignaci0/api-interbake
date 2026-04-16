@@ -11,7 +11,7 @@ export declare class CargoController {
         totalPages: number;
         page: number;
     }>;
-    findOne(id: string): Promise<import("./entities/cargo.entity").Cargo | null>;
+    findOne(id: string): Promise<import("./entities/cargo.entity").Cargo>;
     update(id: string, updateCargoDto: UpdateCargoDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

@@ -48,7 +48,7 @@ export class Usuario {
     })
     reset_token_expires: Date | null;
 
-    @OneToOne(() => Empleado)
+    @OneToOne(() => Empleado, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'empleado_id' })
     empleado: Empleado;
 

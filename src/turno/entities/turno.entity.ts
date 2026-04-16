@@ -12,6 +12,6 @@ export class Turno {
     @Column()
     estado_id:number
 
-    @OneToMany(() => DetalleTurno, (detalle_turno) => detalle_turno.turno_id)
+    @OneToMany(() => DetalleTurno, (detalle_turno) => detalle_turno.turno_id,{cascade:true})
     detalle_turno:DetalleTurno[]
 }

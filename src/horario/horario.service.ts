@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateHorarioDto } from './dto/create-horario.dto';
 import { UpdateHorarioDto } from './dto/update-horario.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -33,26 +33,26 @@ export class HorarioService {
     };
   }
 
-  findOne(id: number) {
-    const horario = this.horarioRepository.findOne({ where: { horario_id: id } });
+  async findOne(id: number) {
+    const horario = await this.horarioRepository.findOne({ where: { horario_id: id } });
     if (!horario) {
-      throw new Error('Horario no encontrado');
+      throw new NotFoundException('Horario no encontrado');
     }
     return horario;
   }
 
-  update(id: number, updateHorarioDto: UpdateHorarioDto) {
-    const horario = this.horarioRepository.findOne({ where: { horario_id: id } });
+  async update(id: number, updateHorarioDto: UpdateHorarioDto) {
+    const horario = await this.horarioRepository.findOne({ where: { horario_id: id } });
     if (!horario) {
-      throw new Error('Horario no encontrado');
+      throw new NotFoundException('Horario no encontrado');
     }
     return this.horarioRepository.update(id, updateHorarioDto);
   }
 
-  remove(id: number) {
-    const horario = this.horarioRepository.findOne({ where: { horario_id: id } });
+  async remove(id: number) {
+    const horario = await this.horarioRepository.findOne({ where: { horario_id: id } });
     if (!horario) {
-      throw new Error('Horario no encontrado');
+      throw new NotFoundException('Horario no encontrado');
     }
     return this.horarioRepository.delete(id);
   }
