@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { CencoService } from './cenco.service';
 import { CreateCencoDto } from './dto/create-cenco.dto';
 import { UpdateCencoDto } from './dto/update-cenco.dto';
@@ -13,8 +13,8 @@ export class CencoController {
   }
 
   @Get()
-  findAll() {
-    return this.cencoService.findAll();
+  findAll(@Query() query: { page?: number, limit?: number }) {
+    return this.cencoService.findAll(query.page, query.limit);
   }
 
   @Get(':id')
