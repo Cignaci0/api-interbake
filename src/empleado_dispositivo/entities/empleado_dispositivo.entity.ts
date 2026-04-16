@@ -16,4 +16,10 @@ export class EmpleadoDispositivo {
 
     @Column()
     fecha_salida: Date;
+
+    @Column()
+    hora_entrada:string;
+
+    @Column()
+    hora_salida:string;
 }
