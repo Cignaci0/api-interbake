@@ -47,7 +47,7 @@ export class EmpleadoDispositivoService {
         empleado_id:idEmpleado
       }
     })
-    if(!empleado){
+    if(empleado.length === 0){
       throw new NotFoundException(`No se encontro ningun registro con el id ${idEmpleado}`);
     }
     return empleado;

@@ -25,8 +25,8 @@ let CencoController = class CencoController {
     create(createCencoDto) {
         return this.cencoService.create(createCencoDto);
     }
-    findAll() {
-        return this.cencoService.findAll();
+    findAll(query) {
+        return this.cencoService.findAll(query.page, query.limit);
     }
     findOne(id) {
         return this.cencoService.findOne(+id);
@@ -48,8 +48,9 @@ __decorate([
 ], CencoController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], CencoController.prototype, "findAll", null);
 __decorate([

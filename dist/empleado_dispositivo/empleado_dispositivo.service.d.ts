@@ -9,4 +9,11 @@ export declare class EmpleadoDispositivoService {
     private readonly dispositivoRepository;
     constructor(empleadoDispositivoRepository: Repository<EmpleadoDispositivo>, empleadoRepository: Repository<Empleado>, dispositivoRepository: Repository<Dispositivo>);
     create(createEmpleadoDispositivoDto: CreateEmpleadoDispositivoDto): Promise<EmpleadoDispositivo>;
+    findAll(page?: number, limit?: number): Promise<{
+        data: EmpleadoDispositivo[];
+        total: number;
+        totalPages: number;
+        page: number;
+    }>;
+    buscarPorEmpleado(idEmpleado: number): Promise<EmpleadoDispositivo[]>;
 }

@@ -32,6 +32,32 @@ let EmpleadoDispositivoService = class EmpleadoDispositivoService {
         const nuevoRegistro = this.empleadoDispositivoRepository.create(createEmpleadoDispositivoDto);
         return this.empleadoDispositivoRepository.save(nuevoRegistro);
     }
+    async findAll(page = 1, limit = 10) {
+        const [data, total] = await this.empleadoDispositivoRepository.findAndCount({
+            order: {
+                id: 'ASC'
+            },
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+        return {
+            data,
+            total,
+            totalPages: Math.ceil(total / limit),
+            page,
+        };
+    }
+    async buscarPorEmpleado(idEmpleado) {
+        const empleado = await this.empleadoDispositivoRepository.find({
+            where: {
+                empleado_id: idEmpleado
+            }
+        });
+        if (empleado.length === 0) {
+            throw new common_1.NotFoundException(`No se encontro ningun registro con el id ${idEmpleado}`);
+        }
+        return empleado;
+    }
 };
 exports.EmpleadoDispositivoService = EmpleadoDispositivoService;
 exports.EmpleadoDispositivoService = EmpleadoDispositivoService = __decorate([

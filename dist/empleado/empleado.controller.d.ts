@@ -17,4 +17,5 @@ export declare class EmpleadoController {
             totalPages: number;
         };
     }>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

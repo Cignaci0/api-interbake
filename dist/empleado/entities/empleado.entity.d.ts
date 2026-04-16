@@ -12,7 +12,6 @@ export declare class Empleado {
     fecha_fin_contrato: Date;
     contrato_indefinido: boolean;
     art_22: boolean;
-    autoriza_ausencia: boolean;
     run: string;
     clave: string;
     nombres: string;

@@ -17,4 +17,5 @@ export declare class UsuarioService {
             totalPages: number;
         };
     }>;
+    remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

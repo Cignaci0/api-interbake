@@ -20,4 +20,5 @@ export declare class EmpleadoService {
             totalPages: number;
         };
     }>;
+    remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

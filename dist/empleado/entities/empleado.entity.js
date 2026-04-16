@@ -25,7 +25,6 @@ let Empleado = class Empleado {
     fecha_fin_contrato;
     contrato_indefinido;
     art_22;
-    autoriza_ausencia;
     run;
     clave;
     nombres;
@@ -83,10 +82,6 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Boolean)
 ], Empleado.prototype, "art_22", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Boolean)
-], Empleado.prototype, "autoriza_ausencia", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)

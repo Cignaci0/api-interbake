@@ -30,6 +30,9 @@ let UsuarioController = class UsuarioController {
     actualizar(id, updateDto) {
         return this.usuarioService.actualizarUsuario(+id, updateDto);
     }
+    remove(id) {
+        return this.usuarioService.remove(+id);
+    }
 };
 exports.UsuarioController = UsuarioController;
 __decorate([
@@ -55,6 +58,13 @@ __decorate([
     __metadata("design:paramtypes", [String, usuario_entity_1.Usuario]),
     __metadata("design:returntype", void 0)
 ], UsuarioController.prototype, "actualizar", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "remove", null);
 exports.UsuarioController = UsuarioController = __decorate([
     (0, common_1.Controller)('usuario'),
     __metadata("design:paramtypes", [usuario_service_1.UsuarioService])

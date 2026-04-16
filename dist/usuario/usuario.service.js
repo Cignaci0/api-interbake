@@ -133,6 +133,13 @@ let UsuarioService = class UsuarioService {
             },
         };
     }
+    remove(id) {
+        const usuario = this.usuarioRepository.findOne({ where: { usuario_id: id } });
+        if (!usuario) {
+            throw new Error('Usuario no encontrado');
+        }
+        return this.usuarioRepository.delete(id);
+    }
 };
 exports.UsuarioService = UsuarioService;
 exports.UsuarioService = UsuarioService = __decorate([

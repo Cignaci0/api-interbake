@@ -4,4 +4,6 @@ export declare class EmpleadoDispositivo {
     dispositivo_id: number;
     fecha_entrada: Date;
     fecha_salida: Date;
+    hora_entrada: string;
+    hora_salida: string;
 }

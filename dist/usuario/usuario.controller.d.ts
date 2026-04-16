@@ -15,4 +15,5 @@ export declare class UsuarioController {
         };
     }>;
     actualizar(id: string, updateDto: Usuario): Promise<any>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }
