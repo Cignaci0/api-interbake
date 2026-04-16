@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Param, Get, Query } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, Get, Query, Delete } from '@nestjs/common';
 import { EmpleadoService } from './empleado.service';
 import { CreateEmpleadoDto } from './dto/create-empleado.dto';
 import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
@@ -23,5 +23,10 @@ export class EmpleadoController {
     @Query('limit') limit: string = '10',
   ) {
     return this.empleadoService.findAll(+page, +limit);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.empleadoService.remove(+id);
   }
 }

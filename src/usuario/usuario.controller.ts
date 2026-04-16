@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Param, Get, Query } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, Get, Query, Delete } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
@@ -23,5 +23,10 @@ export class UsuarioController {
   @Patch('actualizar/:id')
   actualizar(@Param('id') id: string, @Body() updateDto: Usuario) {
     return this.usuarioService.actualizarUsuario(+id, updateDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.usuarioService.remove(+id);
   }
 }

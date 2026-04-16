@@ -106,4 +106,12 @@ export class EmpleadoService {
       },
     };
   }
+
+  remove(id: number) {
+    const empleado = this.empleadoRepository.findOne({ where: { empleado_id: id } });
+    if (!empleado) {
+      throw new Error('Empleado no encontrado');
+    }
+    return this.empleadoRepository.delete(id);
+  }
 }

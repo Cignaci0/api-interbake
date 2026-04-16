@@ -104,4 +104,12 @@ export class UsuarioService {
     };
   }
 
+  remove(id: number) {
+    const usuario = this.usuarioRepository.findOne({ where: { usuario_id: id } });
+    if (!usuario) {
+      throw new Error('Usuario no encontrado');
+    }
+    return this.usuarioRepository.delete(id);
+  }
+
 }

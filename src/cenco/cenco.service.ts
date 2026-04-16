@@ -41,6 +41,10 @@ export class CencoService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} cenco`;
+    const cenco = this.cencoRepository.findOne({ where: { cenco_id: id } });
+    if (!cenco) {
+      throw new Error('Cenco no encontrado');
+    }
+    return this.cencoRepository.delete(id);
   }
 }
