@@ -38,9 +38,6 @@ export class Empleado {
     art_22: boolean;
 
     @Column()
-    autoriza_ausencia: boolean;
-
-    @Column()
     run: string;
 
     @Column({ nullable: true })
