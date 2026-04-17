@@ -27,6 +27,9 @@ import { Turno } from './turno/entities/turno.entity';
 import { MarcasModule } from './marcas/marcas.module';
 import { Marca } from './marcas/entities/marca.entity';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { MarcasAuditoriaModule } from './marcas_auditoria/marcas_auditoria.module';
+import { MarcasAuditoria } from './marcas_auditoria/entities/marcas_auditoria.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -39,8 +42,9 @@ import { MailerModule } from '@nestjs-modules/mailer';
       password: 'superadmin',
       database: 'interbake',
       synchronize: false,
-      entities: [Empleado, Cenco, Dispositivo, Cargo, Usuario, EmpleadoDispositivo, CargoDispositivo, DetalleTurno, Horario, Turno, Marca],
+      entities: [Empleado, Cenco, Dispositivo, Cargo, Usuario, EmpleadoDispositivo, CargoDispositivo, DetalleTurno, Horario, Turno, Marca, MarcasAuditoria],
     }),
+    ScheduleModule.forRoot(),
     MailerModule.forRoot({
       transport: {
         host: 'smtp.gmail.com',
@@ -70,6 +74,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
     HorarioModule,
     TurnoModule,
     MarcasModule,
+    MarcasAuditoriaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -25,8 +25,11 @@ let MarcasController = class MarcasController {
     create(createMarcaDto) {
         return this.marcasService.create(createMarcaDto);
     }
-    findAll() {
-        return this.marcasService.findAll();
+    findAll(numFicha, fechaInicio, fechaFin) {
+        return this.marcasService.findAll(numFicha, fechaInicio, fechaFin);
+    }
+    confirmarCambio(token, accion) {
+        return this.marcasService.confirmarCambio(token, accion);
     }
     findOne(id) {
         return this.marcasService.findOne(+id);
@@ -48,10 +51,21 @@ __decorate([
 ], MarcasController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('numFicha')),
+    __param(1, (0, common_1.Query)('fechaInicio')),
+    __param(2, (0, common_1.Query)('fechaFin')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", void 0)
 ], MarcasController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('confirmar'),
+    __param(0, (0, common_1.Query)('token')),
+    __param(1, (0, common_1.Query)('accion')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], MarcasController.prototype, "confirmarCambio", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

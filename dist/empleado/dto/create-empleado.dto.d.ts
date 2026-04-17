@@ -20,4 +20,5 @@ export declare class CreateEmpleadoDto {
     telefono_movil: number;
     cargo_id: any;
     cenco_id: any;
+    turno: any;
 }

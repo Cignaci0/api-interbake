@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { MarcasService } from './marcas.service';
 import { CreateMarcaDto } from './dto/create-marca.dto';
 import { UpdateMarcaDto } from './dto/update-marca.dto';
@@ -13,8 +13,17 @@ export class MarcasController {
   }
 
   @Get()
-  findAll() {
-    return this.marcasService.findAll();
+  findAll(
+    @Query('numFicha') numFicha: string,
+    @Query('fechaInicio') fechaInicio: string,
+    @Query('fechaFin') fechaFin: string
+  ) {
+    return this.marcasService.findAll(numFicha, fechaInicio, fechaFin);
+  }
+
+  @Get('confirmar')
+  confirmarCambio(@Query('token') token: string, @Query('accion') accion: string) {
+    return this.marcasService.confirmarCambio(token, accion);
   }
 
   @Get(':id')

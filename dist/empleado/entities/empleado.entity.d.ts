@@ -1,5 +1,6 @@
 import { Cargo } from "../../cargo/entities/cargo.entity";
 import { Cenco } from "../../cenco/entities/cenco.entity";
+import { Turno } from "../../turno/entities/turno.entity";
 export declare class Empleado {
     empleado_id: number;
     fecha_nacimiento: Date;
@@ -23,4 +24,5 @@ export declare class Empleado {
     num_ficha: string;
     cenco_id: Cenco;
     email_noti: string;
+    turno: Turno;
 }

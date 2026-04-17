@@ -1,5 +1,6 @@
 import { Cargo } from "src/cargo/entities/cargo.entity";
 import { Cenco } from "src/cenco/entities/cenco.entity";
+import { Turno } from "src/turno/entities/turno.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'empleado' })
@@ -72,5 +73,7 @@ export class Empleado {
     @Column()
     email_noti: string;
 
-
+    @ManyToOne(() => Turno, { nullable: true })
+    @JoinColumn({ name: 'turno_id' })
+    turno: Turno;
 }

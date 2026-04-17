@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Empleado = void 0;
 const cargo_entity_1 = require("../../cargo/entities/cargo.entity");
 const cenco_entity_1 = require("../../cenco/entities/cenco.entity");
+const turno_entity_1 = require("../../turno/entities/turno.entity");
 const typeorm_1 = require("typeorm");
 let Empleado = class Empleado {
     empleado_id;
@@ -36,6 +37,7 @@ let Empleado = class Empleado {
     num_ficha;
     cenco_id;
     email_noti;
+    turno;
 };
 exports.Empleado = Empleado;
 __decorate([
@@ -128,6 +130,11 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Empleado.prototype, "email_noti", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => turno_entity_1.Turno, { nullable: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'turno_id' }),
+    __metadata("design:type", turno_entity_1.Turno)
+], Empleado.prototype, "turno", void 0);
 exports.Empleado = Empleado = __decorate([
     (0, typeorm_1.Entity)({ name: 'empleado' })
 ], Empleado);

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Marca = void 0;
 const dispositivo_entity_1 = require("../../dispositivo/entities/dispositivo.entity");
+const empleado_entity_1 = require("../../empleado/entities/empleado.entity");
 const typeorm_1 = require("typeorm");
 let Marca = class Marca {
     marca_id;
@@ -21,6 +22,7 @@ let Marca = class Marca {
     info_adicional;
     dispositivo_id;
     num_ficha;
+    empleado;
     comentario;
 };
 exports.Marca = Marca;
@@ -57,6 +59,11 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Marca.prototype, "num_ficha", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => empleado_entity_1.Empleado, { nullable: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'num_ficha', referencedColumnName: 'num_ficha' }),
+    __metadata("design:type", empleado_entity_1.Empleado)
+], Marca.prototype, "empleado", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)

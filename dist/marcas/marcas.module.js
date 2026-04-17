@@ -12,12 +12,17 @@ const marcas_service_1 = require("./marcas.service");
 const marcas_controller_1 = require("./marcas.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const marca_entity_1 = require("./entities/marca.entity");
+const marcas_auditoria_entity_1 = require("../marcas_auditoria/entities/marcas_auditoria.entity");
+const config_1 = require("@nestjs/config");
 let MarcasModule = class MarcasModule {
 };
 exports.MarcasModule = MarcasModule;
 exports.MarcasModule = MarcasModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([marca_entity_1.Marca])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([marca_entity_1.Marca, marcas_auditoria_entity_1.MarcasAuditoria]),
+            config_1.ConfigModule,
+        ],
         controllers: [marcas_controller_1.MarcasController],
         providers: [marcas_service_1.MarcasService],
     })

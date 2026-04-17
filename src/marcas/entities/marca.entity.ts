@@ -1,4 +1,5 @@
 import { Dispositivo } from "src/dispositivo/entities/dispositivo.entity";
+import { Empleado } from "src/empleado/entities/empleado.entity";
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'marcas' })
@@ -27,6 +28,10 @@ export class Marca {
 
     @Column()
     num_ficha: string
+
+    @ManyToOne(() => Empleado, { nullable: true })
+    @JoinColumn({ name: 'num_ficha', referencedColumnName: 'num_ficha' })
+    empleado: Empleado;
 
     @Column()
     comentario: string

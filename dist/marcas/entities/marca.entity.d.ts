@@ -1,4 +1,5 @@
 import { Dispositivo } from "../../dispositivo/entities/dispositivo.entity";
+import { Empleado } from "../../empleado/entities/empleado.entity";
 export declare class Marca {
     marca_id: number;
     fecha_marca: Date;
@@ -8,5 +9,6 @@ export declare class Marca {
     info_adicional: string;
     dispositivo_id: Dispositivo;
     num_ficha: string;
+    empleado: Empleado;
     comentario: string;
 }

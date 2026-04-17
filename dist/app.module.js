@@ -36,6 +36,9 @@ const turno_entity_1 = require("./turno/entities/turno.entity");
 const marcas_module_1 = require("./marcas/marcas.module");
 const marca_entity_1 = require("./marcas/entities/marca.entity");
 const mailer_1 = require("@nestjs-modules/mailer");
+const marcas_auditoria_module_1 = require("./marcas_auditoria/marcas_auditoria.module");
+const marcas_auditoria_entity_1 = require("./marcas_auditoria/entities/marcas_auditoria.entity");
+const schedule_1 = require("@nestjs/schedule");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -51,8 +54,9 @@ exports.AppModule = AppModule = __decorate([
                 password: 'superadmin',
                 database: 'interbake',
                 synchronize: false,
-                entities: [empleado_entity_1.Empleado, cenco_entity_1.Cenco, dispositivo_entity_1.Dispositivo, cargo_entity_1.Cargo, usuario_entity_1.Usuario, empleado_dispositivo_entity_1.EmpleadoDispositivo, cargo_dispositivo_entity_1.CargoDispositivo, detalle_turno_entity_1.DetalleTurno, horario_entity_1.Horario, turno_entity_1.Turno, marca_entity_1.Marca],
+                entities: [empleado_entity_1.Empleado, cenco_entity_1.Cenco, dispositivo_entity_1.Dispositivo, cargo_entity_1.Cargo, usuario_entity_1.Usuario, empleado_dispositivo_entity_1.EmpleadoDispositivo, cargo_dispositivo_entity_1.CargoDispositivo, detalle_turno_entity_1.DetalleTurno, horario_entity_1.Horario, turno_entity_1.Turno, marca_entity_1.Marca, marcas_auditoria_entity_1.MarcasAuditoria],
             }),
+            schedule_1.ScheduleModule.forRoot(),
             mailer_1.MailerModule.forRoot({
                 transport: {
                     host: 'smtp.gmail.com',
@@ -82,6 +86,7 @@ exports.AppModule = AppModule = __decorate([
             horario_module_1.HorarioModule,
             turno_module_1.TurnoModule,
             marcas_module_1.MarcasModule,
+            marcas_auditoria_module_1.MarcasAuditoriaModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -1,1 +1,1 @@
-{"version":3,"file":"create-marca.dto.js","sourceRoot":"","sources":["../../../src/marcas/dto/create-marca.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,cAAc;CAAG;AAA9B,wCAA8B"}
+{"version":3,"file":"create-marca.dto.js","sourceRoot":"","sources":["../../../src/marcas/dto/create-marca.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,cAAc;IACzB,SAAS,CAAS;IAClB,WAAW,CAAgB;IAC3B,UAAU,CAAS;IACnB,MAAM,CAAS;IACf,cAAc,CAAU;IACxB,UAAU,CAAU;CACrB;AAPD,wCAOC"}

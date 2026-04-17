@@ -93,7 +93,7 @@ export class EmpleadoService {
       order: {
         empleado_id: 'ASC',
       },
-      relations: ['cargo_id', 'cenco_id'],
+      relations: ['cargo_id', 'cenco_id', 'turno'],
     });
 
     return {

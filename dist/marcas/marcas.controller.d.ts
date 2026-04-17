@@ -8,8 +8,12 @@ export declare class MarcasController {
         message: string;
         data: import("./entities/marca.entity").Marca;
     }>;
-    findAll(): Promise<import("./entities/marca.entity").Marca[]>;
+    findAll(numFicha: string, fechaInicio: string, fechaFin: string): Promise<any[]>;
+    confirmarCambio(token: string, accion: string): Promise<string>;
     findOne(id: string): Promise<import("./entities/marca.entity").Marca | null>;
-    update(id: string, updateMarcaDto: UpdateMarcaDto): Promise<import("typeorm").UpdateResult>;
+    update(id: string, updateMarcaDto: UpdateMarcaDto): Promise<{
+        message: string;
+        data: import("../marcas_auditoria/entities/marcas_auditoria.entity").MarcasAuditoria;
+    }>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

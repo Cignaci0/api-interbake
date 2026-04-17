@@ -23,6 +23,7 @@ class CreateEmpleadoDto {
     telefono_movil;
     cargo_id;
     cenco_id;
+    turno;
 }
 exports.CreateEmpleadoDto = CreateEmpleadoDto;
 //# sourceMappingURL=create-empleado.dto.js.map
