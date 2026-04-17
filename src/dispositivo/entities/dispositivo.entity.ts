@@ -1,4 +1,5 @@
 import { Cenco } from "src/cenco/entities/cenco.entity";
+import { Marca } from "src/marcas/entities/marca.entity";
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'dispositivo' })
@@ -39,5 +40,8 @@ export class Dispositivo {
     @ManyToOne(() => Cenco, (cenco) => cenco.dispositivos)
     @JoinColumn({ name: 'cenco_id' })
     cenco_id: Cenco;
+
+    @OneToMany(() => Marca, (marca) => marca.dispositivo_id)
+    marcas: Marca[];
 
 }

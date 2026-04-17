@@ -1,7 +1,7 @@
 import { DetalleTurno } from "src/detalle_turno/entities/detalle_turno.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({name: 'horario'})
 export class Horario {
     @PrimaryGeneratedColumn()
     horario_id:number

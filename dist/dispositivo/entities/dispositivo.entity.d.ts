@@ -1,4 +1,5 @@
 import { Cenco } from "../../cenco/entities/cenco.entity";
+import { Marca } from "../../marcas/entities/marca.entity";
 export declare class Dispositivo {
     dispositivo_id: number;
     ubicacion: string;
@@ -12,4 +13,5 @@ export declare class Dispositivo {
     nombre: string;
     estado: number;
     cenco_id: Cenco;
+    marcas: Marca[];
 }

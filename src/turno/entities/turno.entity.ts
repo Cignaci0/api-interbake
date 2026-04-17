@@ -1,7 +1,7 @@
 import { DetalleTurno } from "src/detalle_turno/entities/detalle_turno.entity";
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({name: 'turno'})
 export class Turno {
     @PrimaryGeneratedColumn()
     turno_id:number

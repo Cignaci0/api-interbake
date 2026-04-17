@@ -24,7 +24,9 @@ import { TurnoModule } from './turno/turno.module';
 import { DetalleTurno } from './detalle_turno/entities/detalle_turno.entity';
 import { Horario } from './horario/entities/horario.entity';
 import { Turno } from './turno/entities/turno.entity';
-
+import { MarcasModule } from './marcas/marcas.module';
+import { Marca } from './marcas/entities/marca.entity';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
@@ -37,7 +39,24 @@ import { Turno } from './turno/entities/turno.entity';
       password: 'superadmin',
       database: 'interbake',
       synchronize: false,
-      entities: [Empleado, Cenco, Dispositivo, Cargo, Usuario, EmpleadoDispositivo, CargoDispositivo, DetalleTurno, Horario, Turno],
+      entities: [Empleado, Cenco, Dispositivo, Cargo, Usuario, EmpleadoDispositivo, CargoDispositivo, DetalleTurno, Horario, Turno, Marca],
+    }),
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        auth: {
+          user: 'soportefemasetest@gmail.com',
+          pass: 'mskobvyknfujvshj'
+        },
+        tls: {
+          rejectUnauthorized: false
+        }
+      },
+      defaults: {
+        from: '"Soporte FEMASE" <soportefemasetest@gmail.com>'
+      }
     }),
     EmpleadoModule,
     CencoModule,
@@ -50,6 +69,7 @@ import { Turno } from './turno/entities/turno.entity';
     DetalleTurnoModule,
     HorarioModule,
     TurnoModule,
+    MarcasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

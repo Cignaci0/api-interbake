@@ -46,6 +46,6 @@ __decorate([
     __metadata("design:type", Array)
 ], Horario.prototype, "detalle_turno", void 0);
 exports.Horario = Horario = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)({ name: 'horario' })
 ], Horario);
 //# sourceMappingURL=horario.entity.js.map

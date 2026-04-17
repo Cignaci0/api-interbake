@@ -39,6 +39,6 @@ __decorate([
     __metadata("design:type", Number)
 ], DetalleTurno.prototype, "cod_dia", void 0);
 exports.DetalleTurno = DetalleTurno = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)({ name: 'detalle_turno' })
 ], DetalleTurno);
 //# sourceMappingURL=detalle_turno.entity.js.map

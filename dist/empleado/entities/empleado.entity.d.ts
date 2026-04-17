@@ -17,7 +17,7 @@ export declare class Empleado {
     nombres: string;
     apellido_paterno: string;
     apellido_materno: string;
-    cargo_id: Cargo;
+    cargo_id: Cargo | null;
     email: string;
     email_laboral: string;
     num_ficha: string;

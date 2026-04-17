@@ -52,9 +52,9 @@ export class Empleado {
     @Column()
     apellido_materno: string;
 
-    @ManyToOne(() => Cargo, (cargo) => cargo.empleados)
+    @ManyToOne(() => Cargo, (cargo) => cargo.empleados, { nullable: true, onDelete: 'SET NULL' })
     @JoinColumn({ name: 'cargo_id' })
-    cargo_id: Cargo;
+    cargo_id: Cargo | null;
 
     @Column()
     email: string;

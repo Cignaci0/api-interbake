@@ -103,9 +103,9 @@ __decorate([
     __metadata("design:type", String)
 ], Empleado.prototype, "apellido_materno", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => cargo_entity_1.Cargo, (cargo) => cargo.empleados),
+    (0, typeorm_1.ManyToOne)(() => cargo_entity_1.Cargo, (cargo) => cargo.empleados, { nullable: true, onDelete: 'SET NULL' }),
     (0, typeorm_1.JoinColumn)({ name: 'cargo_id' }),
-    __metadata("design:type", cargo_entity_1.Cargo)
+    __metadata("design:type", Object)
 ], Empleado.prototype, "cargo_id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

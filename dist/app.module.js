@@ -33,6 +33,9 @@ const turno_module_1 = require("./turno/turno.module");
 const detalle_turno_entity_1 = require("./detalle_turno/entities/detalle_turno.entity");
 const horario_entity_1 = require("./horario/entities/horario.entity");
 const turno_entity_1 = require("./turno/entities/turno.entity");
+const marcas_module_1 = require("./marcas/marcas.module");
+const marca_entity_1 = require("./marcas/entities/marca.entity");
+const mailer_1 = require("@nestjs-modules/mailer");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -48,7 +51,24 @@ exports.AppModule = AppModule = __decorate([
                 password: 'superadmin',
                 database: 'interbake',
                 synchronize: false,
-                entities: [empleado_entity_1.Empleado, cenco_entity_1.Cenco, dispositivo_entity_1.Dispositivo, cargo_entity_1.Cargo, usuario_entity_1.Usuario, empleado_dispositivo_entity_1.EmpleadoDispositivo, cargo_dispositivo_entity_1.CargoDispositivo, detalle_turno_entity_1.DetalleTurno, horario_entity_1.Horario, turno_entity_1.Turno],
+                entities: [empleado_entity_1.Empleado, cenco_entity_1.Cenco, dispositivo_entity_1.Dispositivo, cargo_entity_1.Cargo, usuario_entity_1.Usuario, empleado_dispositivo_entity_1.EmpleadoDispositivo, cargo_dispositivo_entity_1.CargoDispositivo, detalle_turno_entity_1.DetalleTurno, horario_entity_1.Horario, turno_entity_1.Turno, marca_entity_1.Marca],
+            }),
+            mailer_1.MailerModule.forRoot({
+                transport: {
+                    host: 'smtp.gmail.com',
+                    port: 587,
+                    secure: false,
+                    auth: {
+                        user: 'soportefemasetest@gmail.com',
+                        pass: 'mskobvyknfujvshj'
+                    },
+                    tls: {
+                        rejectUnauthorized: false
+                    }
+                },
+                defaults: {
+                    from: '"Soporte FEMASE" <soportefemasetest@gmail.com>'
+                }
             }),
             empleado_module_1.EmpleadoModule,
             cenco_module_1.CencoModule,
@@ -61,6 +81,7 @@ exports.AppModule = AppModule = __decorate([
             detalle_turno_module_1.DetalleTurnoModule,
             horario_module_1.HorarioModule,
             turno_module_1.TurnoModule,
+            marcas_module_1.MarcasModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
